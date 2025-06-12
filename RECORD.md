@@ -6,6 +6,7 @@
 
 ### 2. 获取测试币
 
+
     - Sepolia 测试网: https://sepoliafaucet.com
     - Goerli 测试网: https://goerlifaucet.com
     - 每次可领取 0.1-0.5 ETH（需登录 Alchemy 账户）
@@ -13,10 +14,11 @@
     
 ### 项目初始化
 
-mkdir mytoken && cd mytoken
-npm init -y
-npm install --save-dev hardhat @nomiclabs/hardhat-waffle ethers @openzeppelin/contracts
-npx hardhat
+
+    mkdir mytoken && cd mytoken
+    npm init -y
+    npm install --save-dev hardhat @nomiclabs/hardhat-waffle ethers @openzeppelin/contracts
+    npx hardhat
 
 ### 配置 hardhat.config.js
 
@@ -35,22 +37,26 @@ npx hardhat
     };
 ### 部署脚本
 
-// scripts/deploy.js
-async function main() {
-  const [deployer] = await ethers.getSigners();
-  console.log("Deploying with account:", deployer.address);
 
-  const Token = await ethers.getContractFactory("MyToken");
-  const token = await Token.deploy(1000000); // 100万代币
+    // scripts/deploy.js
+    async function main() {
+        const [deployer] = await ethers.getSigners();
+        console.log("Deploying with account:", deployer.address);
 
-  console.log("Token deployed to:", token.address);
-}
+        const Token = await ethers.getContractFactory("MyToken");
+        const token = await Token.deploy(1000000); // 100万代币
+
+        console.log("Token deployed to:", token.address);
+    }
 ### 执行部署
-npx hardhat run scripts/deploy.js --network sepolia
+
+
+    npx hardhat run scripts/deploy.js --network sepolia
 
 ### 合约不可升级 ，如需可升级合约，使用 OpenZeppelin Upgradeable 模板：
 
-import "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
+
+    import "@openzeppelin/contracts-upgradeable/token/ERC20/ERC20Upgradeable.sol";
 
 
 
